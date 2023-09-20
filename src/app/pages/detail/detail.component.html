@@ -1,0 +1,30 @@
+<main *ngIf="character$ | async as character">
+	<mat-card class="w-100">
+		<mat-card-header class="p-4">
+			<div class="w-100 pe-4">
+				<mat-card-title class="d-flex">
+					{{ character.name }}
+					<app-gender class="ps-5" [gender]="character.gender" />
+				</mat-card-title>
+
+				<mat-card-subtitle>
+					<div class="h5">Status: {{ character.status }}</div>
+					<div class="h5">Espécie: {{ character.species }}</div>
+					<div class="h5">
+						Data de criação: {{ character.created | date: 'dd/MM/yyyy' }}
+					</div>
+				</mat-card-subtitle>
+			</div>
+
+			<img
+				mat-card-xl-image
+				appImageNotFound
+				[src]="character.image"
+				[alt]="character.name" />
+		</mat-card-header>
+	</mat-card>
+</main>
+
+<h3 *ngIf="notFound$ | async" class="text-center mt-4">
+	Personagem não encontrado
+</h3>
