@@ -1,0 +1,35 @@
+<header class="header d-flex justify-content-center align-items-center">
+	<div class="px-4">
+		<h2>Rick & Morty</h2>
+		<h3>Lista de Personagens</h3>
+	</div>
+
+	<img class="header__logo h-100 px-4" src="assets/logo.png" alt="logo" />
+</header>
+
+<main class="py-2">
+	<app-search (searchChange)="onSearchChange($event)" />
+
+	<ng-container *ngIf="characters$ | async as characters">
+		<section class="d-flex flex-row flex-wrap justify-content-center">
+			<app-card-character
+				class="mx-1 my-2"
+				*ngFor="let character of characters"
+				[character]="character" />
+		</section>
+
+		<p class="text-center" *ngIf="!characters.length && search$.value">
+			Não encontrado
+		</p>
+	</ng-container>
+
+	<ng-container *ngIf="pagination$ | async as pagination">
+		<mat-paginator
+			showFirstLastButtons
+			hidePageSize
+			[length]="pagination.count"
+			pageSize="20"
+			[pageIndex]="(pageIndex$ | async)!"
+			(page)="onPaginationChange($event.pageIndex)" />
+	</ng-container>
+</main>

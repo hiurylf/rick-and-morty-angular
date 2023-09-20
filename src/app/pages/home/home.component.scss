@@ -1,0 +1,8 @@
+.header {
+  height: 20vh;
+
+  &__logo {
+    object-fit: contain;
+    max-width: 50vw;
+  }
+}
