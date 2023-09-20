@@ -1,0 +1,8 @@
+<mat-progress-bar
+	mode="indeterminate"
+	class="position-fixed z-1"
+	*ngIf="loading.status$ | async" />
+
+<main class="p-4 main ms-auto me-auto">
+	<router-outlet />
+</main>
